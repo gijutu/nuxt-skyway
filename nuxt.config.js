@@ -12,8 +12,12 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/nuxt-skyway/favicon.ico' }
     ]
+  },
+
+  router: {
+    base: '/nuxt-skyway/'
   },
   /*
   ** Customize the progress-bar color
