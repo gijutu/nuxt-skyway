@@ -1,13 +1,5 @@
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/nuxt-skyway/'
-  }
-} : {}
 
 export default {
-  router: {
-    base: '/nuxt-skyway/'
-  }
   mode: 'spa',
   /*
   ** Headers of the page
