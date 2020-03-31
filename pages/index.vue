@@ -1,38 +1,41 @@
 <template>
 <section class="container">
   <div>
-    <logo/>
-    <video id="their-video" width="200" autoplay playsinline></video>
-    <video id="my-video" muted="true" width="200" autoplay playsinline></video>
+    <img src="~/assets/images/logo_manaby.png" width="380" height="100"/>
+    <video id="their-video" width="300" autoplay playsinline></video>
+    <video id="my-video" muted="true" width="300" autoplay playsinline></video>
 
     <div class="main">
       <h2>manabyのビデオチャットテスト</h2>
-      マイク:
-      <select v-model="selectedAudio" @change="onChange">
-        <option disabled value="">Please select one</option>
-        <option v-for="(audio, key, index) in audios" v-bind:key="index" :value="audio.value">
-          {{ audio.text }}
-        </option>
-      </select>
-
-      カメラ:
-      <select v-model="selectedVideo" @change="onChange">
-        <option disabled value="">Please select one</option>
-        <option v-for="(video, key, index) in videos" v-bind:key="index" :value="video.value">
-          {{ video.text }}
-        </option>
-      </select>
-      <div>
-            <p>Your id: <span id="my-id">{{peerId}}</span></p>
-            <p>他のブラウザでこのIDをコールしましょう。</p>
-            <h3>コールする</h3>
-            <input v-model="calltoid" placeholder="call id">
-            <button @click="makeCall" class="button--green">Call</button>
-          </div>
-        </div>
-
+      <div class="microphone mb-1">
+        マイク:
+        <select v-model="selectedAudio" @change="onChange">
+          <option disabled value="">Please select one</option>
+          <option v-for="(audio, key, index) in audios" v-bind:key="index" :value="audio.value">
+            {{ audio.text }}
+          </option>
+        </select>
       </div>
-    </section>
+      <div class="camera mb-1">
+        カメラ:
+        <select v-model="selectedVideo" @change="onChange">
+          <option disabled value="">Please select one</option>
+          <option v-for="(video, key, index) in videos" v-bind:key="index" :value="video.value">
+            {{ video.text }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <p>Your id: <span id="my-id">{{peerId}}</span></p>
+        <p>他のブラウザでこのIDをコールしましょう。</p>
+        <h3>コールする</h3>
+        <input v-model="calltoid" placeholder="call id">
+        <button @click="makeCall" class="button--green">Call</button>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 </template>
 
@@ -67,7 +70,7 @@ export default {
     connectLocalCamera: async function(){
       const constraints = {
         audio: this.selectedAudio ? { deviceId: { exact: this.selectedAudio } } : false,
-        video: this.selectedVideo ? { deviceId: { exact: this.selectedVideo } } : false
+        video: this.selectedVideo ? { deviceId: { facingMode: { exact: this.selectedVideo }} } : false
       }
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
