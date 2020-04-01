@@ -1,7 +1,7 @@
 <template>
 <section class="container">
   <div>
-    <img src="~/assets/images/logo_manaby.png" width="380" height="100"/>
+    <logo/>
     <video id="their-video" width="300" autoplay playsinline></video>
     <video id="my-video" muted="true" width="300" autoplay playsinline></video>
 
@@ -70,7 +70,7 @@ export default {
     connectLocalCamera: async function(){
       const constraints = {
         audio: this.selectedAudio ? { deviceId: { exact: this.selectedAudio } } : false,
-        video: this.selectedVideo ? { deviceId: { facingMode: { exact: this.selectedVideo }} } : false
+        video: this.selectedVideo ? { deviceId: { facingMode: { exact: this.selectedVideo } } } : false
       }
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
